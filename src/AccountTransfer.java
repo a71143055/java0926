@@ -3,8 +3,8 @@ public class AccountTransfer {
         Account a = new Account("123-45", 10000);
         Account b = new Account("567-89", 10000);
 
-        while(a.getBalance() >= 0) {
-            a.transfer(b,3000);
+        while(a.transfer(b,3000)) {
+            ;
         }
 
         System.out.println(a.toString());
@@ -21,16 +21,16 @@ class Account {
         this.balance = balance;
     }
 
-    public void transfer(Account dest, int amount) {
-        balance += amount;
+    public boolean transfer(Account dest, int amount) {
+        if(this.balance < 3000) {
+            return false;
+        }
+        dest.balance += amount;
         this.balance -= amount;
-    }
-
-    public int getBalance() {
-        return balance;
+        return true;
     }
 
     public String toString() {
-        return "Account [num=" + num + ", balance=" + balance + "]";
+        return "Account {num=" + this.num + ", balance=" + this.balance + "}";
     }
 }
